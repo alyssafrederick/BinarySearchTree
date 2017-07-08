@@ -1,0 +1,12 @@
+D:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.exe.config
+D:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.exe
+D:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
+D:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache
+D:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.exe
+D:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
+E:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.exe.config
+E:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.exe
+E:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
+E:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.exe
+E:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
+E:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache
