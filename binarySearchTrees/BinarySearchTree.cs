@@ -13,14 +13,14 @@ namespace binarySearchTrees
 
         public void Add(T value)
         {
-            //if there is no head, insert the BSTNode as the head
+            //if there is no root, insert the BSTNode as the root
             if (Root == null)
             {
                 Root = new BSTNode<T>(value);
                 return;
             }
 
-            //if there is a head
+            //if there is a root
             if (Root != null)
             {
                 BSTNode<T> current = Root;
@@ -29,7 +29,7 @@ namespace binarySearchTrees
                 while (current != null)
                 {
 
-                    //if the new bstNodes value is less than the head's value-> the new bstnode would be on left of head  
+                    //if the new bstNodes value is less than the root's value-> the new bstnode would be on left of root  
                     if (current.Value.CompareTo(value) > 0)
                     {
                         if (current.leftChild == null)
@@ -42,7 +42,7 @@ namespace binarySearchTrees
                         current = current.leftChild;
 
                     }
-                    //if the new bstNodes value is greater than that of the head-> the new bstnode would be on the right of head
+                    //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
                     else if (current.Value.CompareTo(value) <= 0)
                     {
                         if (current.rightChild == null)
@@ -72,7 +72,7 @@ namespace binarySearchTrees
 
                 while (current != null)
                 {
-                    //if the new bstNodes value is less than the head's value-> the new bstnode would be on left of head  
+                    //if the new bstNodes value is less than the root's value-> the new bstnode would be on left of root  
                     if (current.Value.CompareTo(value) > 0)
                     {
                         if (current.Value.CompareTo(value) == 0)
@@ -83,7 +83,7 @@ namespace binarySearchTrees
                         current = current.leftChild;
                     }
 
-                    //if the new bstNodes value is greater than that of the head-> the new bstnode would be on the right of head
+                    //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
                     else if (current.Value.CompareTo(value) <= 0)
                     {
                         if (current.Value.CompareTo(value) == 0)
@@ -183,7 +183,7 @@ namespace binarySearchTrees
 
             while (current != null)
             {
-                //if the new bstNodes value is less than the head's value-> the new bstnode would be on left of head  
+                //if the new bstNodes value is less than the root's value-> the new bstnode would be on left of root  
                 if (current.Value.CompareTo(value) > 0)
                 {
                     if (current.Value.CompareTo(value) == 0)
@@ -195,7 +195,7 @@ namespace binarySearchTrees
                     current = current.leftChild;
                 }
 
-                //if the new bstNodes value is greater than that of the head-> the new bstnode would be on the right of head
+                //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
                 else if (current.Value.CompareTo(value) <= 0)
                 {
                     if (current.Value.CompareTo(value) == 0)

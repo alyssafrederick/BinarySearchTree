@@ -10,3 +10,6 @@ E:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
 E:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.exe
 E:\GMR\binarySearchTrees\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
 E:\GMR\binarySearchTrees\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache
+C:\Users\AlyssaFrederick\Documents\github\BinarySearchTree\binarySearchTrees\bin\Debug\binarySearchTrees.exe.config
+C:\Users\AlyssaFrederick\Documents\github\BinarySearchTree\binarySearchTrees\obj\Debug\binarySearchTrees.exe
+C:\Users\AlyssaFrederick\Documents\github\BinarySearchTree\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
