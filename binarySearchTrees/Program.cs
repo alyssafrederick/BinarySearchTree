@@ -20,6 +20,24 @@ namespace binarySearchTrees
 
             Queue<int> Q = new Queue<int>();
 
+            AVLtree<int> avltree = new AVLtree<int>();
+
+
+
+
+            ///////AVL TREE EXAMPLES//////
+            avltree.Add(7);
+            avltree.Add(3);
+            avltree.Add(10);
+            avltree.Add(9);
+            avltree.Add(12);
+            avltree.Add(4);
+            avltree.Add(6);
+
+            Console.WriteLine($"{avltree.Balance()}");
+              
+
+            //////STACK EXAMPLES//////
             //stack.Push(2);
             //stack.Push(6);
             //stack.Push(19);
@@ -27,6 +45,9 @@ namespace binarySearchTrees
             //stack.Pop();
             //stack.Peek();
 
+
+
+            ///////QUEUE EXAMPLES//////
             //Q.Enqueue(5);
             //Q.Enqueue(7);
             //Q.Enqueue(90);
@@ -35,37 +56,37 @@ namespace binarySearchTrees
 
 
 
-            bst.Add(17);
-            bst.Add(20);
-            bst.Add(10);
-            bst.Add(15);
-            bst.Add(12);
-            bst.Add(16);
-            bst.Add(5);
-            bst.Add(6);
-            bst.Add(8);
-            bst.Add(18);
-            bst.Add(19);
-            bst.Add(54);
-
-            bst.TraverseInOrder(bst.Root);
-            Console.WriteLine("\n");
-            bst.TraversePreOrder(bst.Root);
-            Console.WriteLine("\n");
-            bst.TraversePostOrder(bst.Root);
-            Console.WriteLine("\nTraverse starts here");
-            bst.TraverseLevelOrder();
-
+            /////////BST EXAMPLES///////
+            //bst.Add(17);
+            //bst.Add(20);
+            //bst.Add(10);
+            //bst.Add(15);
+            //bst.Add(12);
+            //bst.Add(16);
+            //bst.Add(5);
+            //bst.Add(6);
+            //bst.Add(8);
+            //bst.Add(18);
+            //bst.Add(19);
+            //bst.Add(54);
+            //bst.TraverseInOrder(bst.Root);
+            //Console.WriteLine("\n");
+            //bst.TraversePreOrder(bst.Root);
+            //Console.WriteLine("\n");
+            //bst.TraversePostOrder(bst.Root);
+            //Console.WriteLine("\nTraverse starts here");
+            //bst.TraverseLevelOrder();
             //bst.Maximum();
             //bst.Remove(54);
             //bst.Maximum();
 
+
+
+            /////////LINKED LIST EXAMPLES///////
             //stringList.Add("hi");
             //stringList.Add("hey");
             //stringList.Add("hello");
             //stringList.AddAfter("hellooo", 2);
-
-
 
             //alyssaList.Add(1);
             //alyssaList.Add(2);
@@ -77,9 +98,7 @@ namespace binarySearchTrees
             //alyssaList.Add(5);
             //alyssaList.AddBefore(7, 2);
             //alyssaList.Add(9);
-            // 6 7 1 2 8 4 5 9 YAY
-
-
+            //// 6 7 1 2 8 4 5 9 YAY
 
             //////////testing Find and DeleteAllInstances
             //if (alyssaList.Find(3) == true)
@@ -102,10 +121,6 @@ namespace binarySearchTrees
             //    Console.WriteLine("false");
             //}
 
-
-
-            Console.ReadLine();
-
             //for (int i = 0; i < 10; i++)
             //{
             //    alyssaList.Add(i + 1);
@@ -114,9 +129,12 @@ namespace binarySearchTrees
             //{
             //    alyssaList.Delete(i + 1);
             //}
-
             //alyssaList.Add(7);
             //alyssaList.Add(90);
+
+
+
+            Console.ReadLine();
         }
     }
 }
