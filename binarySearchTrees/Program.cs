@@ -26,16 +26,16 @@ namespace binarySearchTrees
 
 
             ///////AVL TREE EXAMPLES//////
-            avltree.Add(7);
             avltree.Add(3);
-            avltree.Add(10);
+            avltree.Add(2);
+            avltree.Add(1);
             avltree.Add(9);
             avltree.Add(12);
             avltree.Add(4);
             avltree.Add(6);
 
-            Console.WriteLine($"{avltree.Balance()}");
-              
+
+
 
             //////STACK EXAMPLES//////
             //stack.Push(2);

@@ -16,3 +16,9 @@ C:\Users\AlyssaFrederick\Documents\github\BinarySearchTree\binarySearchTrees\obj
 C:\Users\AlyssaFrederick\Documents\GitHub\BinarySearchTree\binarySearchTrees\bin\Debug\binarySearchTrees.exe
 C:\Users\AlyssaFrederick\Documents\GitHub\BinarySearchTree\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
 C:\Users\AlyssaFrederick\Documents\GitHub\BinarySearchTree\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.exe.config
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.exe
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.exe
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
+C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache

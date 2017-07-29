@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace binarySearchTrees
 {
-    class AVLnode<T> where T : IComparable
+    class AVLnode<T> : IComparable where T : IComparable
     {
         public T Value;
 
@@ -15,6 +15,16 @@ namespace binarySearchTrees
         public AVLnode<T> leftChild;
         public AVLnode<T> rightChild;
         public AVLnode<T> parent;
+
+        public int Balance()
+        {
+            return (rightChild?.Height ?? 0) - (leftChild?.Height ?? 0);
+        }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
 
         public AVLnode (T value)
         {

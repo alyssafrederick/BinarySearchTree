@@ -11,8 +11,8 @@ namespace binarySearchTrees
         public AVLnode<T> Root;
         public bool IsEmpty => Root == null;
 
-        
- 
+
+
         public void Add(T value)
         {
             //if there is no root, insert the BSTNode as the root
@@ -26,10 +26,11 @@ namespace binarySearchTrees
             if (Root != null)
             {
                 AVLnode<T> current = Root;
-
+                Stack<AVLnode<T>> stack = new Stack<AVLnode<T>>();
 
                 while (current != null)
                 {
+                    stack.Push(current);
 
                     //if the new bstNodes value is less than the root's value-> the new bstnode would be on left of root  
                     if (current.Value.CompareTo(value) > 0)
@@ -38,7 +39,7 @@ namespace binarySearchTrees
                         {
                             current.leftChild = new AVLnode<T>(value);
                             current.leftChild.parent = current;
-                            return;
+                            break;
                         }
 
                         current = current.leftChild;
@@ -51,12 +52,18 @@ namespace binarySearchTrees
                         {
                             current.rightChild = new AVLnode<T>(value);
                             current.rightChild.parent = current;
-                            return;
+                            break;
                         }
 
                         current = current.rightChild;
                     }
                 }
+
+                while (stack.IsEmpty == false)
+                {
+                    Rotate(stack.Pop());
+                }
+
             }
         }
 
@@ -213,10 +220,126 @@ namespace binarySearchTrees
             return null;
         }
 
-        public int Balance()
-        {
-            return Root.rightChild.Height - Root.leftChild.Height;
-        }
 
+        public void Rotate(AVLnode<T> node)
+        {
+            //if its balanced ... balance will be -1, 0, 1
+            if (node.Balance() == -1 || node.Balance() == 0 || node.Balance() == 1)
+            {
+                return;
+            }
+
+            //if tree is leaning towards right ... balance will be >1
+            else if (node.Balance() > 1)
+            {
+                AVLnode<T> parent = node.parent;
+                AVLnode<T> middle = node.rightChild;
+                AVLnode<T> right = middle.rightChild;
+
+                bool isroot = false;
+                bool leftchild = false;
+
+                if (parent == null)
+                {
+                    isroot = true;
+                }
+                else
+                {
+                    if (parent.leftChild == node)         //if we are a leftchild 
+                    {
+                        leftchild = true;
+                    }
+                    else if (parent.rightChild == node)   //if we are a rightchild
+                    {
+                        leftchild = false;
+                    }
+                }
+
+                if (isroot == true)
+                {
+                    Root = middle;
+                    node.rightChild = null;
+                    Root.leftChild = node;
+                    node.parent = Root;
+                }
+                else
+                {
+                    if (leftchild == true)    //leftchild
+                    {
+                        node.rightChild = null;
+                        middle.leftChild = node;
+                        node.parent = middle;
+                        parent.leftChild = middle;                      
+                        middle.parent = parent;
+                    }
+                    else                      //rightchild
+                    {
+                        node.rightChild = null;
+                        middle.leftChild = node;
+                        node.parent = middle;
+                        parent.rightChild = middle;                   
+                        middle.parent = parent;
+
+                    }
+                }
+
+            }
+
+            //if tree is leaning towards left ... balance will be <1
+            else
+            {
+                AVLnode<T> parent = node.parent;
+                AVLnode<T> middle = node.leftChild;
+                AVLnode<T> left = middle.leftChild;
+
+                bool isroot = false;
+                bool leftchild = false;
+
+                if (parent == null)
+                {
+                    isroot = true;
+                }
+                else
+                {
+                    if (parent.leftChild == node)         //if we are a leftchild 
+                    {
+                        leftchild = true;
+                    }
+                    else if (parent.rightChild == node)   //if we are a rightchild
+                    {
+                        leftchild = false;
+                    }
+                }
+
+
+                if (isroot == true)
+                {
+                    Root = middle;
+                    node.leftChild = null;
+                    Root.rightChild = node;
+                    node.parent = Root;
+                }
+                else
+                {
+                    if (leftchild == true)   //leftchild
+                    {
+                        node.leftChild = null;
+                        middle.rightChild = node;
+                        node.parent = middle;
+                        parent.leftChild = middle;
+                        middle.parent = parent;
+                    }
+                    else                      //rightchild 
+                    {
+                        node.leftChild = null;
+                        middle.rightChild = node;
+                        node.parent = middle;
+                        parent.rightChild = middle;
+                        middle.parent = parent;
+                    }
+                }
+
+            }
+        }
     }
 }
