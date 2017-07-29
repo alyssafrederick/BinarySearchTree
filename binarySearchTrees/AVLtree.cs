@@ -230,7 +230,7 @@ namespace binarySearchTrees
             }
 
             //if tree is leaning towards right ... balance will be >1
-            else if (node.Balance() > 1)
+            else if (node.Balance() > 1 && (node.rightChild.Balance() > 0))
             {
                 AVLnode<T> parent = node.parent;
                 AVLnode<T> middle = node.rightChild;
@@ -285,8 +285,32 @@ namespace binarySearchTrees
 
             }
 
+            //if tree is a right-left rotation
+            else if (node.Balance() > 1 && (node.rightChild.Balance() > 0))
+            {
+                AVLnode<T> parent = node.parent;
+                AVLnode<T> middle = node.rightChild;
+                AVLnode<T> newright = middle.leftChild;
+
+                bool isroot = false;
+                if (parent == null)
+                {
+                    isroot = true;
+                }
+                
+                newright.rightChild = middle;
+                middle.parent = newright;
+                middle.leftChild = newright.leftChild;
+                middle.rightChild = newright.rightChild;
+                node.rightChild = newright;
+                newright.parent = node;
+
+                Rotate(node);
+            }
+
+
             //if tree is leaning towards left ... balance will be <1
-            else
+            else if (node.Balance() < 1 && (node.leftChild.Balance() < 0))
             {
                 AVLnode<T> parent = node.parent;
                 AVLnode<T> middle = node.leftChild;
@@ -338,8 +362,31 @@ namespace binarySearchTrees
                         middle.parent = parent;
                     }
                 }
-
             }
+
+            //if tree is a left-right rotation 
+            else if (node.Balance() < 1 && (node.leftChild.Balance() > 0))
+            {
+                AVLnode<T> parent = node.parent;
+                AVLnode<T> middle = node.leftChild;
+                AVLnode<T> newleft = middle.rightChild;
+
+                bool isroot = false;
+                if (parent == null)
+                {
+                    isroot = true;
+                }
+
+                newleft.leftChild = middle;
+                middle.parent = newleft;
+                middle.leftChild = newleft.leftChild;
+                middle.rightChild = newleft.rightChild;
+                node.leftChild = newleft;
+                newleft.parent = node;
+
+                Rotate(node);
+            }  
+
         }
     }
 }
