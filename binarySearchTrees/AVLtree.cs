@@ -269,7 +269,7 @@ namespace binarySearchTrees
                         node.rightChild = null;
                         middle.leftChild = node;
                         node.parent = middle;
-                        parent.leftChild = middle;                      
+                        parent.leftChild = middle;
                         middle.parent = parent;
                     }
                     else                      //rightchild
@@ -277,7 +277,7 @@ namespace binarySearchTrees
                         node.rightChild = null;
                         middle.leftChild = node;
                         node.parent = middle;
-                        parent.rightChild = middle;                   
+                        parent.rightChild = middle;
                         middle.parent = parent;
 
                     }
@@ -286,24 +286,81 @@ namespace binarySearchTrees
             }
 
             //if tree is a right-left rotation
-            else if (node.Balance() > 1 && (node.rightChild.Balance() > 0))
+            else if (node.Balance() > 1 && (node.rightChild.Balance() < 0))
             {
                 AVLnode<T> parent = node.parent;
                 AVLnode<T> middle = node.rightChild;
-                AVLnode<T> newright = middle.leftChild;
+                AVLnode<T> bottom = middle.leftChild;
+                AVLnode<T> leftbaby = bottom.leftChild;
+                AVLnode<T> rightbaby = bottom.rightChild;
 
                 bool isroot = false;
                 if (parent == null)
                 {
                     isroot = true;
                 }
-                
-                newright.rightChild = middle;
-                middle.parent = newright;
-                middle.leftChild = newright.leftChild;
-                middle.rightChild = newright.rightChild;
-                node.rightChild = newright;
-                newright.parent = node;
+
+
+                //middle.parent = null;
+                //middle.rightChild = null;
+                //middle.leftChild = null;
+
+                //middle.leftChild = newright.leftChild;
+                //middle.rightChild = newright.rightChild;
+
+                //middle.parent = newright;
+                //newright.rightChild = middle;
+                //node.rightChild = newright;
+                //newright.parent = node;
+
+
+
+                //newright.rightChild = middle;
+                //middle.parent = newright;
+                //middle.leftChild = newright.leftChild;
+                //middle.rightChild = newright.rightChild;
+                //node.rightChild = newright;
+                //newright.parent = node;
+
+
+
+
+
+
+                ////////this is so wrong... maybe i am reassigning in the wrong way. the tree is worse than before
+                node.leftChild = null;
+
+                middle.parent = null;
+                middle.rightChild = null;
+                middle.leftChild = null;
+
+                bottom.parent = null;
+                bottom.rightChild = null;
+                bottom.leftChild = null;
+
+                if (leftbaby != null)
+                {
+                    leftbaby.parent = null;
+                }
+
+                if (rightbaby != null)
+                {
+                    rightbaby.parent = null;
+                }
+
+
+
+                node.leftChild = bottom;
+                bottom.parent = node;
+                bottom.leftChild = middle;
+                middle.parent = bottom;
+                middle.leftChild = leftbaby;
+                middle.rightChild = rightbaby;
+
+
+
+
+
 
                 Rotate(node);
             }
@@ -385,7 +442,7 @@ namespace binarySearchTrees
                 newleft.parent = node;
 
                 Rotate(node);
-            }  
+            }
 
         }
     }

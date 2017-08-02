@@ -32,7 +32,7 @@ namespace binarySearchTrees
             avltree.Add(9);
             avltree.Add(12);
             avltree.Add(4);
-            avltree.Add(6);
+            //avltree.Add(6);
 
 
 
