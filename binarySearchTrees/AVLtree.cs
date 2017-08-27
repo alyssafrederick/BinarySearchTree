@@ -25,6 +25,7 @@ namespace binarySearchTrees
             //if there is a root
             if (Root != null)
             {
+                Root.SetRoot();
                 AVLnode<T> current = Root;
                 Stack<AVLnode<T>> stack = new Stack<AVLnode<T>>();
 
@@ -35,27 +36,25 @@ namespace binarySearchTrees
                     //if the new bstNodes value is less than the root's value-> the new bstnode would be on left of root  
                     if (current.Value.CompareTo(value) > 0)
                     {
-                        if (current.leftChild == null)
+                        if (current.LeftChild == null)
                         {
-                            current.leftChild = new AVLnode<T>(value);
-                            current.leftChild.parent = current;
+                            current.LeftChild = new AVLnode<T>(value);
                             break;
                         }
 
-                        current = current.leftChild;
+                        current = current.LeftChild;
 
                     }
                     //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
                     else if (current.Value.CompareTo(value) <= 0)
                     {
-                        if (current.rightChild == null)
+                        if (current.RightChild == null)
                         {
-                            current.rightChild = new AVLnode<T>(value);
-                            current.rightChild.parent = current;
+                            current.RightChild = new AVLnode<T>(value);
                             break;
                         }
 
-                        current = current.rightChild;
+                        current = current.RightChild;
                     }
                 }
 
@@ -89,7 +88,7 @@ namespace binarySearchTrees
                             nodeToRemove = current;
                         }
 
-                        current = current.leftChild;
+                        current = current.LeftChild;
                     }
 
                     //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
@@ -100,42 +99,38 @@ namespace binarySearchTrees
                             nodeToRemove = current;
                         }
 
-                        current = current.rightChild;
+                        current = current.RightChild;
                     }
                 }
 
                 if (nodeToRemove != null)
                 {
-                    if (nodeToRemove.leftChild == null && nodeToRemove.rightChild == null)
+                    if (nodeToRemove.LeftChild == null && nodeToRemove.RightChild == null)
                     {
                         //if the nodeToRemove is a left child then delete the parents connection to the left child
-                        if (nodeToRemove.parent.leftChild == nodeToRemove)
+                        if (nodeToRemove.Parent.LeftChild == nodeToRemove)
                         {
-                            nodeToRemove.parent.leftChild = null;
+                            nodeToRemove.Parent.LeftChild = null;
                         }
 
                         //if the nodeToRemove is a right child then delete the parents connection to the right child 
-                        else if (nodeToRemove.parent.rightChild == nodeToRemove)
+                        else if (nodeToRemove.Parent.RightChild == nodeToRemove)
                         {
-                            nodeToRemove.parent.rightChild = null;
+                            nodeToRemove.Parent.RightChild = null;
                         }
-
-                        nodeToRemove.parent = null;
                     }
 
                     //if the nodeToRemove only has a rightchild
-                    else if (nodeToRemove.leftChild == null)
+                    else if (nodeToRemove.LeftChild == null)
                     {
-                        nodeToRemove.rightChild.parent = nodeToRemove.parent;
-                        nodeToRemove.parent.leftChild = nodeToRemove.rightChild;
+                        nodeToRemove.Parent.LeftChild = nodeToRemove.RightChild;
 
                     }
 
                     //if the nodeToRemove only has a leftchild
-                    else if (nodeToRemove.rightChild == null)
+                    else if (nodeToRemove.RightChild == null)
                     {
-                        nodeToRemove.leftChild.parent = nodeToRemove.parent;
-                        nodeToRemove.parent.rightChild = nodeToRemove.leftChild;
+                        nodeToRemove.Parent.RightChild = nodeToRemove.LeftChild;
                     }
 
                     //if the nodeToRemove has both a leftchild and a rightchild
@@ -143,37 +138,32 @@ namespace binarySearchTrees
                     {
                         bool movedRight = false;
 
-                        current = nodeToRemove.leftChild;
+                        current = nodeToRemove.LeftChild;
 
-                        while (current.rightChild != null)
+                        while (current.RightChild != null)
                         {
-                            current = current.rightChild;
+                            current = current.RightChild;
                             movedRight = true;
                         }
 
                         if (movedRight == true)
                         {
-                            current.leftChild = nodeToRemove.leftChild;
-                            current.leftChild.parent = current;
+                            current.LeftChild = nodeToRemove.LeftChild;
                         }
 
                         //if the node is as leftchild
-                        if (nodeToRemove.parent.leftChild == nodeToRemove)
+                        if (nodeToRemove.Parent.LeftChild == nodeToRemove)
                         {
-                            current.parent = nodeToRemove.parent;
-                            nodeToRemove.parent.leftChild = current;
+                            nodeToRemove.Parent.LeftChild = current;
                         }
 
                         //if the node is a rightchild
-                        else if (nodeToRemove.parent.rightChild == nodeToRemove)
+                        else if (nodeToRemove.Parent.RightChild == nodeToRemove)
                         {
-                            current.parent = nodeToRemove.parent;
-                            nodeToRemove.parent.rightChild = current;
+                            nodeToRemove.Parent.RightChild = current;
                         }
 
-                        current.rightChild = nodeToRemove.rightChild;
-                        current.rightChild.parent = current;
-
+                        current.RightChild = nodeToRemove.RightChild;
 
 
                     }
@@ -201,7 +191,7 @@ namespace binarySearchTrees
                         return current;
                     }
 
-                    current = current.leftChild;
+                    current = current.LeftChild;
                 }
 
                 //if the new bstNodes value is greater than that of the root-> the new bstnode would be on the right of root
@@ -213,7 +203,7 @@ namespace binarySearchTrees
                         return current;
                     }
 
-                    current = current.rightChild;
+                    current = current.RightChild;
                 }
             }
 
@@ -230,26 +220,26 @@ namespace binarySearchTrees
             }
 
             //if tree is leaning towards right ... balance will be >1
-            else if (node.Balance() > 1 && (node.rightChild.Balance() > 0))
+            else if (node.Balance() > 1 && (node.RightChild.Balance() > 0))
             {
-                AVLnode<T> parent = node.parent;
-                AVLnode<T> middle = node.rightChild;
-                AVLnode<T> right = middle.rightChild;
+                AVLnode<T> parent = node.Parent;
+                AVLnode<T> middle = node.RightChild;
+                AVLnode<T> right = middle.RightChild;
 
                 bool isroot = false;
                 bool leftchild = false;
-
+                Root.SetRoot();
                 if (parent == null)
                 {
                     isroot = true;
                 }
                 else
                 {
-                    if (parent.leftChild == node)         //if we are a leftchild 
+                    if (parent.LeftChild == node)         //if we are a leftchild 
                     {
                         leftchild = true;
                     }
-                    else if (parent.rightChild == node)   //if we are a rightchild
+                    else if (parent.RightChild == node)   //if we are a rightchild
                     {
                         leftchild = false;
                     }
@@ -258,27 +248,24 @@ namespace binarySearchTrees
                 if (isroot == true)
                 {
                     Root = middle;
-                    node.rightChild = null;
-                    Root.leftChild = node;
-                    node.parent = Root;
+                    Root.SetRoot();
+                    node.RightChild = null;
+                    Root.LeftChild = node;
+
                 }
                 else
                 {
                     if (leftchild == true)    //leftchild
                     {
-                        node.rightChild = null;
-                        middle.leftChild = node;
-                        node.parent = middle;
-                        parent.leftChild = middle;
-                        middle.parent = parent;
+                        node.RightChild = null;
+                        middle.LeftChild = node;
+                        parent.LeftChild = middle;
                     }
                     else                      //rightchild
                     {
-                        node.rightChild = null;
-                        middle.leftChild = node;
-                        node.parent = middle;
-                        parent.rightChild = middle;
-                        middle.parent = parent;
+                        node.RightChild = null;
+                        middle.LeftChild = node;
+                        parent.RightChild = middle;
 
                     }
                 }
@@ -286,19 +273,24 @@ namespace binarySearchTrees
             }
 
             //if tree is a right-left rotation
-            else if (node.Balance() > 1 && (node.rightChild.Balance() < 0))
+            else if (node.Balance() > 1 && (node.RightChild.Balance() < 0))
             {
-                AVLnode<T> parent = node.parent;
-                AVLnode<T> middle = node.rightChild;
-                AVLnode<T> bottom = middle.leftChild;
-                AVLnode<T> leftbaby = bottom.leftChild;
-                AVLnode<T> rightbaby = bottom.rightChild;
+                AVLnode<T> parent = node.Parent;
+                AVLnode<T> middle = node.RightChild;
+                AVLnode<T> bottom = middle.LeftChild;
+                AVLnode<T> leftbaby = bottom.LeftChild;
+                AVLnode<T> rightbaby = bottom.RightChild;
+                Root.SetRoot();
 
                 bool isroot = false;
                 if (parent == null)
                 {
                     isroot = true;
                 }
+
+
+                bottom.RightChild = middle;
+                node.RightChild = bottom;
 
 
                 //middle.parent = null;
@@ -328,34 +320,34 @@ namespace binarySearchTrees
 
 
                 ////////this is so wrong... maybe i am reassigning in the wrong way. the tree is worse than before
-                node.leftChild = null;
+                //node.leftChild = null;
 
-                middle.parent = null;
-                middle.rightChild = null;
-                middle.leftChild = null;
+                //middle.parent = null;
+                //middle.rightChild = null;
+                //middle.leftChild = null;
 
-                bottom.parent = null;
-                bottom.rightChild = null;
-                bottom.leftChild = null;
+                //bottom.parent = null;
+                //bottom.rightChild = null;
+                //bottom.leftChild = null;
 
-                if (leftbaby != null)
-                {
-                    leftbaby.parent = null;
-                }
+                //if (leftbaby != null)
+                //{
+                //    leftbaby.parent = null;
+                //}
 
-                if (rightbaby != null)
-                {
-                    rightbaby.parent = null;
-                }
+                //if (rightbaby != null)
+                //{
+                //    rightbaby.parent = null;
+                //}
 
 
 
-                node.leftChild = bottom;
-                bottom.parent = node;
-                bottom.leftChild = middle;
-                middle.parent = bottom;
-                middle.leftChild = leftbaby;
-                middle.rightChild = rightbaby;
+                //node.leftChild = bottom;
+                //bottom.parent = node;
+                //bottom.leftChild = middle;
+                //middle.parent = bottom;
+                //middle.leftChild = leftbaby;
+                //middle.rightChild = rightbaby;
 
 
 
@@ -367,11 +359,11 @@ namespace binarySearchTrees
 
 
             //if tree is leaning towards left ... balance will be <1
-            else if (node.Balance() < 1 && (node.leftChild.Balance() < 0))
+            else if (node.Balance() < 1 && (node.LeftChild.Balance() < 0))
             {
-                AVLnode<T> parent = node.parent;
-                AVLnode<T> middle = node.leftChild;
-                AVLnode<T> left = middle.leftChild;
+                AVLnode<T> parent = node.Parent;
+                AVLnode<T> middle = node.LeftChild;
+                AVLnode<T> left = middle.LeftChild;
 
                 bool isroot = false;
                 bool leftchild = false;
@@ -382,11 +374,11 @@ namespace binarySearchTrees
                 }
                 else
                 {
-                    if (parent.leftChild == node)         //if we are a leftchild 
+                    if (parent.LeftChild == node)         //if we are a leftchild 
                     {
                         leftchild = true;
                     }
-                    else if (parent.rightChild == node)   //if we are a rightchild
+                    else if (parent.RightChild == node)   //if we are a rightchild
                     {
                         leftchild = false;
                     }
@@ -396,37 +388,32 @@ namespace binarySearchTrees
                 if (isroot == true)
                 {
                     Root = middle;
-                    node.leftChild = null;
-                    Root.rightChild = node;
-                    node.parent = Root;
+                    node.LeftChild = null;
+                    Root.RightChild = node;
                 }
                 else
                 {
                     if (leftchild == true)   //leftchild
                     {
-                        node.leftChild = null;
-                        middle.rightChild = node;
-                        node.parent = middle;
-                        parent.leftChild = middle;
-                        middle.parent = parent;
+                        node.LeftChild = null;
+                        middle.RightChild = node;
+                        parent.LeftChild = middle;
                     }
                     else                      //rightchild 
                     {
-                        node.leftChild = null;
-                        middle.rightChild = node;
-                        node.parent = middle;
-                        parent.rightChild = middle;
-                        middle.parent = parent;
+                        node.LeftChild = null;
+                        middle.RightChild = node;
+                        parent.RightChild = middle;
                     }
                 }
             }
 
             //if tree is a left-right rotation 
-            else if (node.Balance() < 1 && (node.leftChild.Balance() > 0))
+            else if (node.Balance() < 1 && (node.LeftChild.Balance() > 0))
             {
-                AVLnode<T> parent = node.parent;
-                AVLnode<T> middle = node.leftChild;
-                AVLnode<T> newleft = middle.rightChild;
+                AVLnode<T> parent = node.Parent;
+                AVLnode<T> middle = node.LeftChild;
+                AVLnode<T> newleft = middle.RightChild;
 
                 bool isroot = false;
                 if (parent == null)
@@ -434,12 +421,10 @@ namespace binarySearchTrees
                     isroot = true;
                 }
 
-                newleft.leftChild = middle;
-                middle.parent = newleft;
-                middle.leftChild = newleft.leftChild;
-                middle.rightChild = newleft.rightChild;
-                node.leftChild = newleft;
-                newleft.parent = node;
+                newleft.LeftChild = middle;
+                middle.LeftChild = newleft.LeftChild;
+                middle.RightChild = newleft.RightChild;
+                node.LeftChild = newleft;
 
                 Rotate(node);
             }
