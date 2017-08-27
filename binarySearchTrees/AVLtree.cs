@@ -60,7 +60,7 @@ namespace binarySearchTrees
 
                 while (stack.IsEmpty == false)
                 {
-                    Rotate(stack.Pop());
+                    Fix(stack.Pop());
                 }
 
             }
@@ -211,7 +211,7 @@ namespace binarySearchTrees
         }
 
 
-        public void Rotate(AVLnode<T> node)
+        public void Fix(AVLnode<T> node)
         {
             //if its balanced ... balance will be -1, 0, 1
             if (node.Balance() == -1 || node.Balance() == 0 || node.Balance() == 1)
@@ -222,213 +222,68 @@ namespace binarySearchTrees
             //if tree is leaning towards right ... balance will be >1
             else if (node.Balance() > 1 && (node.RightChild.Balance() > 0))
             {
-                AVLnode<T> parent = node.Parent;
-                AVLnode<T> middle = node.RightChild;
-                AVLnode<T> right = middle.RightChild;
 
-                bool isroot = false;
-                bool leftchild = false;
-                Root.SetRoot();
-                if (parent == null)
-                {
-                    isroot = true;
-                }
-                else
-                {
-                    if (parent.LeftChild == node)         //if we are a leftchild 
-                    {
-                        leftchild = true;
-                    }
-                    else if (parent.RightChild == node)   //if we are a rightchild
-                    {
-                        leftchild = false;
-                    }
-                }
-
-                if (isroot == true)
-                {
-                    Root = middle;
-                    Root.SetRoot();
-                    node.RightChild = null;
-                    Root.LeftChild = node;
-
-                }
-                else
-                {
-                    if (leftchild == true)    //leftchild
-                    {
-                        node.RightChild = null;
-                        middle.LeftChild = node;
-                        parent.LeftChild = middle;
-                    }
-                    else                      //rightchild
-                    {
-                        node.RightChild = null;
-                        middle.LeftChild = node;
-                        parent.RightChild = middle;
-
-                    }
-                }
-
+                RotateLeft(node);
             }
-
-            //if tree is a right-left rotation
-            else if (node.Balance() > 1 && (node.RightChild.Balance() < 0))
-            {
-                AVLnode<T> parent = node.Parent;
-                AVLnode<T> middle = node.RightChild;
-                AVLnode<T> bottom = middle.LeftChild;
-                AVLnode<T> leftbaby = bottom.LeftChild;
-                AVLnode<T> rightbaby = bottom.RightChild;
-                Root.SetRoot();
-
-                bool isroot = false;
-                if (parent == null)
-                {
-                    isroot = true;
-                }
-
-
-                bottom.RightChild = middle;
-                node.RightChild = bottom;
-
-
-                //middle.parent = null;
-                //middle.rightChild = null;
-                //middle.leftChild = null;
-
-                //middle.leftChild = newright.leftChild;
-                //middle.rightChild = newright.rightChild;
-
-                //middle.parent = newright;
-                //newright.rightChild = middle;
-                //node.rightChild = newright;
-                //newright.parent = node;
-
-
-
-                //newright.rightChild = middle;
-                //middle.parent = newright;
-                //middle.leftChild = newright.leftChild;
-                //middle.rightChild = newright.rightChild;
-                //node.rightChild = newright;
-                //newright.parent = node;
-
-
-
-
-
-
-                ////////this is so wrong... maybe i am reassigning in the wrong way. the tree is worse than before
-                //node.leftChild = null;
-
-                //middle.parent = null;
-                //middle.rightChild = null;
-                //middle.leftChild = null;
-
-                //bottom.parent = null;
-                //bottom.rightChild = null;
-                //bottom.leftChild = null;
-
-                //if (leftbaby != null)
-                //{
-                //    leftbaby.parent = null;
-                //}
-
-                //if (rightbaby != null)
-                //{
-                //    rightbaby.parent = null;
-                //}
-
-
-
-                //node.leftChild = bottom;
-                //bottom.parent = node;
-                //bottom.leftChild = middle;
-                //middle.parent = bottom;
-                //middle.leftChild = leftbaby;
-                //middle.rightChild = rightbaby;
-
-
-
-
-
-
-                Rotate(node);
-            }
-
 
             //if tree is leaning towards left ... balance will be <1
             else if (node.Balance() < 1 && (node.LeftChild.Balance() < 0))
             {
-                AVLnode<T> parent = node.Parent;
-                AVLnode<T> middle = node.LeftChild;
-                AVLnode<T> left = middle.LeftChild;
+                RotateRight(node);
+            }
 
-                bool isroot = false;
-                bool leftchild = false;
-
-                if (parent == null)
-                {
-                    isroot = true;
-                }
-                else
-                {
-                    if (parent.LeftChild == node)         //if we are a leftchild 
-                    {
-                        leftchild = true;
-                    }
-                    else if (parent.RightChild == node)   //if we are a rightchild
-                    {
-                        leftchild = false;
-                    }
-                }
-
-
-                if (isroot == true)
-                {
-                    Root = middle;
-                    node.LeftChild = null;
-                    Root.RightChild = node;
-                }
-                else
-                {
-                    if (leftchild == true)   //leftchild
-                    {
-                        node.LeftChild = null;
-                        middle.RightChild = node;
-                        parent.LeftChild = middle;
-                    }
-                    else                      //rightchild 
-                    {
-                        node.LeftChild = null;
-                        middle.RightChild = node;
-                        parent.RightChild = middle;
-                    }
-                }
+            //if tree is a right-left rotation
+            else if (node.Balance() > 1 && (node.RightChild.LeftChild != null && node.RightChild.RightChild == null))
+            {
+                RotateRightLeft(node);
             }
 
             //if tree is a left-right rotation 
-            else if (node.Balance() < 1 && (node.LeftChild.Balance() > 0))
+            else if (node.Balance() < 1 && (node.LeftChild.RightChild != null && node.LeftChild.LeftChild == null))
             {
-                AVLnode<T> parent = node.Parent;
-                AVLnode<T> middle = node.LeftChild;
-                AVLnode<T> newleft = middle.RightChild;
-
-                bool isroot = false;
-                if (parent == null)
-                {
-                    isroot = true;
-                }
-
-                newleft.LeftChild = middle;
-                middle.LeftChild = newleft.LeftChild;
-                middle.RightChild = newleft.RightChild;
-                node.LeftChild = newleft;
-
-                Rotate(node);
+                RotateLeftRight(node);
             }
 
         }
+
+        public void RotateLeft(AVLnode<T> node)
+        {
+            AVLnode<T> child = node.RightChild;
+            node.RightChild = null;
+            if (node == Root)
+            {
+                Root = child;
+                Root.SetRoot();
+            }
+            child.LeftChild = node;
+
+        }
+
+        public void RotateRight(AVLnode<T> node)
+        {
+            AVLnode<T> child = node.LeftChild;
+            node.LeftChild = null;
+            if (node == Root)
+            {
+                Root = child;
+                Root.SetRoot();
+            }
+            child.RightChild = node;
+        }
+
+        public void RotateLeftRight(AVLnode<T> node)
+        {
+            //could just call other rotates
+            RotateLeft(node.LeftChild);
+            RotateRight(node);
+        }
+
+        public void RotateRightLeft(AVLnode<T> node)
+        {
+            //could just call other rotates
+            RotateRight(node.RightChild);
+            RotateLeft(node);
+        }
+
     }
 }
