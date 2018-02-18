@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace binarySearchTrees
 {
-    class AVLnode<T> : IComparable where T : IComparable
+    public class AVLnode<T> : IComparable where T : IComparable
     {
         public T Value;
 

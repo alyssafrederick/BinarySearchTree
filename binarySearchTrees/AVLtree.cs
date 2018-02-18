@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace binarySearchTrees
 {
-    class AVLtree<T> where T : IComparable
+    public class AVLtree<T> where T : IComparable
     {
         public AVLnode<T> Root;
         public bool IsEmpty => Root == null;
@@ -210,7 +210,7 @@ namespace binarySearchTrees
             return null;
         }
 
-
+   
         public void Fix(AVLnode<T> node)
         {
             //if its balanced ... balance will be -1, 0, 1

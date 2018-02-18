@@ -1,0 +1,8 @@
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\bin\Debug\DataStructuresTests.dll
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\bin\Debug\DataStructuresTests.pdb
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\bin\Debug\binarySearchTrees.exe
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\bin\Debug\binarySearchTrees.pdb
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\obj\Debug\DataStructuresTests.csprojResolveAssemblyReference.cache
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\obj\Debug\DataStructuresTests.dll
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\DataStructuresTests\obj\Debug\DataStructuresTests.pdb
