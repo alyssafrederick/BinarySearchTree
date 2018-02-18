@@ -26,14 +26,17 @@ namespace binarySearchTrees
 
 
             ///////AVL TREE EXAMPLES//////
-            avltree.Add(3);
-            avltree.Add(2);
-            avltree.Add(1);
-            avltree.Add(9);
-            //avltree.Add(12);
-            avltree.Add(4);
+            //avltree.Add(3);
+            //avltree.Add(2);
+            //avltree.Add(1);
+            //avltree.Add(9);
+            ////avltree.Add(12);
+            //avltree.Add(4);
             //avltree.Add(6);
-
+            AVLtree<int> prac = new AVLtree<int>();
+            prac.Add(1);
+            prac.Add(2);
+            prac.Add(3);
 
 
 

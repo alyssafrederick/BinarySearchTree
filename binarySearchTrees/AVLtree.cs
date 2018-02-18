@@ -222,7 +222,6 @@ namespace binarySearchTrees
             //if tree is leaning towards right ... balance will be >1
             else if (node.Balance() > 1 && (node.RightChild.Balance() > 0))
             {
-
                 RotateLeft(node);
             }
 
@@ -245,7 +244,7 @@ namespace binarySearchTrees
             }
 
         }
-
+        //tree is right heavy
         public void RotateLeft(AVLnode<T> node)
         {
             AVLnode<T> child = node.RightChild;
@@ -257,8 +256,17 @@ namespace binarySearchTrees
             }
             child.LeftChild = node;
 
+
+            //AVLnode<T> child = node.RightChild;
+            //child.LeftChild = node;
+            //Root = child;
+            //node.RightChild = null;
+            //Root.SetRoot();
+
+
         }
 
+        //tree is left heavy
         public void RotateRight(AVLnode<T> node)
         {
             AVLnode<T> child = node.LeftChild;
@@ -271,6 +279,7 @@ namespace binarySearchTrees
             child.RightChild = node;
         }
 
+        //tree is left heavy
         public void RotateLeftRight(AVLnode<T> node)
         {
             //could just call other rotates
@@ -278,9 +287,15 @@ namespace binarySearchTrees
             RotateRight(node);
         }
 
+        //tree is right heavy
         public void RotateRightLeft(AVLnode<T> node)
         {
             //could just call other rotates
+            //  AVLnode<T> child = node.RightChild;
+            //  AVLnode<T> grandchild = child.LeftChild;
+
+            // grandchild.RightChild = child;
+            // node.RightChild = grandchild;
             RotateRight(node.RightChild);
             RotateLeft(node);
         }
