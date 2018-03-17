@@ -74,7 +74,7 @@ namespace binarySearchTrees
         public AVLnode<T> Parent
         {
             get { return parent; }
-            private set { parent = value; }
+            set { parent = value; }
         }
 
         private AVLnode<T> left;

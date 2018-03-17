@@ -245,7 +245,7 @@ namespace binarySearchTrees
 
         }
         //tree is right heavy
-        public void RotateLeft(AVLnode<T> node)
+        public void RotateLeft(AVLnode<T> node) // 3
         {
             AVLnode<T> child = node.RightChild;
             node.RightChild = null;
@@ -254,7 +254,19 @@ namespace binarySearchTrees
                 Root = child;
                 Root.SetRoot();
             }
-            child.LeftChild = node;
+            else
+            {
+                child.Parent = node.Parent;
+                node.Parent.LeftChild = child;
+                child.LeftChild = node;
+                node.Parent = child;
+            }
+
+            if (child != null)
+            {
+                child.LeftChild = node;
+            }
+            
 
 
             //AVLnode<T> child = node.RightChild;
@@ -270,13 +282,24 @@ namespace binarySearchTrees
         public void RotateRight(AVLnode<T> node)
         {
             AVLnode<T> child = node.LeftChild;
-            node.LeftChild = null;
+            node.LeftChild = child.LeftChild;
             if (node == Root)
             {
                 Root = child;
                 Root.SetRoot();
             }
-            child.RightChild = node;
+            else
+            {
+                child.Parent = node.Parent;
+                node.Parent.RightChild = child;
+                child.RightChild = node;
+                node.Parent = child;
+
+            }
+            if (child != null)
+            {
+                child.RightChild = node;
+            }
         }
 
         //tree is left heavy
