@@ -11,8 +11,6 @@ namespace binarySearchTrees
         public AVLnode<T> Root;
         public bool IsEmpty => Root == null;
 
-
-
         public void Add(T value)
         {
             //if there is no root, insert the BSTNode as the root
@@ -210,7 +208,6 @@ namespace binarySearchTrees
             return null;
         }
 
-   
         public void Fix(AVLnode<T> node)
         {
             //if its balanced ... balance will be -1, 0, 1

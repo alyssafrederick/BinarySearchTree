@@ -34,9 +34,13 @@ namespace binarySearchTrees
             //avltree.Add(4);
             //avltree.Add(6);
             AVLtree<int> prac = new AVLtree<int>();
+            prac.Add(5);
+            prac.Add(8);
             prac.Add(1);
-            prac.Add(2);
-            prac.Add(3);
+            prac.Add(7);
+            prac.Add(10);
+            prac.Add(9);
+
 
 
 
