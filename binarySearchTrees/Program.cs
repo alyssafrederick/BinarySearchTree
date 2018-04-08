@@ -22,6 +22,17 @@ namespace binarySearchTrees
 
             AVLtree<int> avltree = new AVLtree<int>();
 
+            RedBlackTree<int> rbtre = new RedBlackTree<int>();
+
+
+
+            /////////RED BLACK TREE EXAMPLES////////
+            rbtre.Add(2);
+            rbtre.Add(4);
+            rbtre.Add(1);
+            rbtre.Add(3);
+            rbtre.Add(5);
+
 
 
 
@@ -33,13 +44,13 @@ namespace binarySearchTrees
             ////avltree.Add(12);
             //avltree.Add(4);
             //avltree.Add(6);
-            AVLtree<int> prac = new AVLtree<int>();
-            prac.Add(5);
-            prac.Add(8);
-            prac.Add(1);
-            prac.Add(7);
-            prac.Add(10);
-            prac.Add(9);
+            //AVLtree<int> prac = new AVLtree<int>();
+            //prac.Add(5);
+            //prac.Add(8);
+            //prac.Add(1);
+            //prac.Add(7);
+            //prac.Add(10);
+            //prac.Add(9);
 
 
 
