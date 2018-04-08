@@ -35,22 +35,9 @@ namespace binarySearchTrees
             }
         }
 
-        public RedBlackNode<T> Parent
-        {
-            get
-            {
-                return parent;
-            }
-            set
-            {
-                parent = value;
-            }
-        }
-
 
         private RedBlackNode<T> left;
         private RedBlackNode<T> right;
-        private RedBlackNode<T> parent;
 
         public RedBlackNode(T value)
         {
