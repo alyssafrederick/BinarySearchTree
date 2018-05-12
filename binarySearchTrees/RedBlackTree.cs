@@ -48,7 +48,7 @@ namespace binarySearchTrees
             Root.Red = false;
 
 
-            Root = add(add(Root, value), value);
+         //   Root = add(add(Root, value), value);
             /*RedBlackNode<T> current = Root;
 
             //if there was previously nothing in the tree
@@ -123,17 +123,35 @@ namespace binarySearchTrees
             if (current == Root)
             {
                 Root = current.Right;
+                current.Right = Root.Left;
                 Root.Left = current;
             }
             else
             {
-
+                RedBlackNode<T> tempNode = current;
+                current = current.Right;
+                tempNode.Right = current.Left;
+                current.Left = tempNode;                
             }
 
         }
 
-        public void RotateRight(RedBlackNode<T> curent)
+        public void RotateRight(RedBlackNode<T> current)
         {
+            if(current == Root)
+            {
+                Root = current.Left;
+                current.Left = Root.Right;
+                Root.Right = current;
+            }
+            else
+            {
+                RedBlackNode<T> tempNode = current;
+                current = current.Left;
+                tempNode.Left = current.Right;
+                current.Left = tempNode;
+            }
+
 
         }
 
@@ -156,22 +174,26 @@ namespace binarySearchTrees
                 current.Left = add(current.Left, value);
             }
             //if the current's value is less than that of the Tvalue, Tvalue will continue along Right
-            else if (current.Value.CompareTo(value) < 0)
+            else
             {
                 current.Right = add(current.Right, value);
             }
 
+
             //rotate left to make the 3-node left leaning
-            if(current.Right.Red == true)
+            if(current.Right != null && current.Right.Red == true)
             {
                 RotateLeft(current);
             }
 
             //rotate right to correct the unbalanced 4-node
-            if(current.Left.Red == true && current.Left.Left.Red == true)
+            if(current.Left != null && current.Left.Left != null && current.Left.Red == true && current.Left.Left.Red == true)
             {
                 RotateRight(current);
             }
+
+            // TODO: fix this
+            return current;
         }
     }
 }
