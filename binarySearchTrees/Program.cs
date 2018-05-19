@@ -31,9 +31,9 @@ namespace binarySearchTrees
             rbtre.Add(10);
             rbtre.Add(30);
             rbtre.Add(5);
-            rbtre.Add(35);
-            //rbtre.Add(25);
-           // rbtre.Add(27);
+            rbtre.Add(35);            
+            rbtre.Add(25);
+            rbtre.Add(27);
 
 
 
@@ -154,7 +154,7 @@ namespace binarySearchTrees
 
 
 
-            Console.ReadLine();
+             Console.ReadLine();
         }
     }
 }

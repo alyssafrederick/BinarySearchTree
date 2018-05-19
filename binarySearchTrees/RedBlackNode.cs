@@ -10,8 +10,7 @@ namespace binarySearchTrees
     {
         public T Value;
         public bool Red = true;
-        public bool Black = false;
-
+        
         public RedBlackNode<T> Left
         {
             get

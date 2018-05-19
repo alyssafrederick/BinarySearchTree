@@ -9,136 +9,33 @@ namespace binarySearchTrees
     public class RedBlackTree<T> where T : IComparable
     {
         public RedBlackNode<T> Root;
-        public void FlipColor(RedBlackNode<T> node)
+
+        private void FlipColor(RedBlackNode<T> node)
         {
             node.Red = !node.Red;
-            node.Black = !node.Black;
 
             if (node.Right != null)
             {
                 node.Right.Red = !node.Red;
-                node.Right.Red = node.Black;
             }
             if (node.Left != null)
             {
                 node.Left.Red = !node.Red;
-                node.Left.Red = node.Black;
             }
         }
 
-        //private void SearchDown(T value)
-        //{
-        //    RedBlackNode<T> current = Root;
-
-        //    //if a 4-node is found, split it
-        //    if (current.Left?.Red == true && current.Right?.Red == true)
-        //    {
-        //        FlipColor(current);
-        //    }
-
-        //    if (current.Right == null)
-        //    {
-        //        current.Right = new RedBlackNode<T>(value);
-        //        current.Right.Parent = current;
-        //        return;
-        //    }
-
-        //    current = current.Right;
-        //}
-
-        public void Add(T value)
+        private bool isBlack(RedBlackNode<T> node)
         {
-            Root = add(Root, value);
-
-            Root.Red = false;
-            Root.Black = true;
-
-
-         //   Root = add(add(Root, value), value);
-            /*RedBlackNode<T> current = Root;
-
-            //if there was previously nothing in the tree
-            if (Root == null)
+            if (node != null)
             {
-                Root = new RedBlackNode<T>(value);
-                return;
+                return !node.Red;
             }
 
-            //if anything is in the tree
-            else
-            {
-                //searching down to bottom of tree
-                while (current != null)
-                {
-                    //if the current's value is greater than that of the Tvalue, Tvalue will continue along Left
-                    if (current.Value.CompareTo(value) >= 0)
-                    {
-                        //if a 4-node is found, split it
-                        if (current.Left?.Red == true && current.Right?.Red == true)
-                        {
-                            FlipColor(current);
-                        }
-
-                        if (current.Left == null)
-                        {
-                            current.Left = new RedBlackNode<T>(value);
-                            current.Left.Parent = current;
-                            return;
-                        }
-
-
-                        //////////////////////////////////////////////////not left leaning.... make 3-nodes left leaning
-
-                        current = current.Left; 
-
-                    }
-
-                    //if the current's value is less than that of the Tvalue, Tvalue will continue along Right
-                    else if (current.Value.CompareTo(value) < 0)
-                    {
-                        SearchDown(value);
-                    }
-                }
-            }*/
+            return true;
         }
 
-        public RedBlackNode<T> RotateLeft(RedBlackNode<T> current)
+        private RedBlackNode<T> RotateLeft(RedBlackNode<T> current)
         {
-            //RedBlackNode<T> child = current.Right;
-            //current.Right = null;
-            //if (current == Root)
-            //{
-            //    Root = child;
-            //    current = null;
-            //}
-            //else
-            //{
-            //    current = current.Parent;
-            //    current.Parent.LeftChild = child;
-            //    child.LeftChild = current;
-            //    current.Parent = child;
-            //}
-
-            //if (child != null)
-            //{
-            //    child.Left = current;
-            //}
-
-            ///////////////////////////////////////////////////
-
-            /*if (current == Root)
-            {
-                Root = current.Right;
-                current.Right = Root.Left;
-                Root.Left = current;
-            }
-            else
-            {
-                RedBlackNode<T> tempNode = current;
-                current = current.Right;
-                tempNode.Right = current.Left;
-                current.Left = tempNode;                
-            }*/
 
             var temp = current.Right;
             current.Right = temp.Left;
@@ -149,23 +46,22 @@ namespace binarySearchTrees
             return temp;
         }
 
-        public void RotateRight(RedBlackNode<T> current)
+        private RedBlackNode<T> RotateRight(RedBlackNode<T> current)
         {
-            if(current == Root)
-            {
-                Root = current.Left;
-                current.Left = Root.Right;
-                Root.Right = current;
-            }
-            else
-            {
-                RedBlackNode<T> tempNode = current;
-                current = current.Left;
-                tempNode.Left = current.Right;
-                current.Left = tempNode;
-            }
+            var temp = current.Left;
+            current.Left = temp.Right;
+            temp.Right = current;
+            temp.Red = current.Red;
+            current.Red = true;
 
+            return temp;
+        }
 
+        public void Add(T value)
+        {
+            Root = add(Root, value);
+
+            Root.Red = false;
         }
 
         private RedBlackNode<T> add(RedBlackNode<T> current, T value)
@@ -194,19 +90,36 @@ namespace binarySearchTrees
 
 
             //rotate left to make the 3-node left leaning
-            if ((current.Left == null || current.Left?.Black == true) && current.Right?.Red == true)
+            if (isBlack(current.Left) && current.Right?.Red == true)
             {
-                RotateLeft(current);
+                current = RotateLeft(current);
             }
 
             //rotate right to correct the unbalanced 4-node
             if (current.Left?.Red == true && current.Left?.Left?.Red == true)
             {
-                RotateRight(current);
+                current = RotateRight(current);
             }
 
             // TODO: fix this
             return current;
         }
+
+        public RedBlackNode<T> MoveRedLeft(RedBlackNode<T> current)
+        {
+            FlipColor(current);
+            current.Right = RotateRight(current.Right);
+            current = RotateLeft(current);
+            FlipColor(current);
+        }
+
+        public void Remove(T value)
+        {
+            while (Root.Left != null)
+            {
+                
+            }
+        }
+
     }
 }
