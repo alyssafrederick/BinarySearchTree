@@ -9,7 +9,8 @@ namespace binarySearchTrees
     public class RedBlackNode<T> : IComparable where T : IComparable
     {
         public T Value;
-        public bool Red = false;
+        public bool Red = true;
+        public bool Black = false;
 
         public RedBlackNode<T> Left
         {

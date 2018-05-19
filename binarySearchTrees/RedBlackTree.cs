@@ -12,13 +12,17 @@ namespace binarySearchTrees
         public void FlipColor(RedBlackNode<T> node)
         {
             node.Red = !node.Red;
+            node.Black = !node.Black;
+
             if (node.Right != null)
             {
                 node.Right.Red = !node.Red;
+                node.Right.Red = node.Black;
             }
             if (node.Left != null)
             {
                 node.Left.Red = !node.Red;
+                node.Left.Red = node.Black;
             }
         }
 
@@ -45,7 +49,9 @@ namespace binarySearchTrees
         public void Add(T value)
         {
             Root = add(Root, value);
+
             Root.Red = false;
+            Root.Black = true;
 
 
          //   Root = add(add(Root, value), value);
@@ -96,7 +102,7 @@ namespace binarySearchTrees
             }*/
         }
 
-        public void RotateLeft(RedBlackNode<T> current)
+        public RedBlackNode<T> RotateLeft(RedBlackNode<T> current)
         {
             //RedBlackNode<T> child = current.Right;
             //current.Right = null;
@@ -120,7 +126,7 @@ namespace binarySearchTrees
 
             ///////////////////////////////////////////////////
 
-            if (current == Root)
+            /*if (current == Root)
             {
                 Root = current.Right;
                 current.Right = Root.Left;
@@ -132,8 +138,15 @@ namespace binarySearchTrees
                 current = current.Right;
                 tempNode.Right = current.Left;
                 current.Left = tempNode;                
-            }
+            }*/
 
+            var temp = current.Right;
+            current.Right = temp.Left;
+            temp.Left = current;
+            temp.Red = current.Red;
+            current.Red = true;
+
+            return temp;
         }
 
         public void RotateRight(RedBlackNode<T> current)
@@ -181,13 +194,13 @@ namespace binarySearchTrees
 
 
             //rotate left to make the 3-node left leaning
-            if(current.Right != null && current.Right.Red == true)
+            if ((current.Left == null || current.Left?.Black == true) && current.Right?.Red == true)
             {
                 RotateLeft(current);
             }
 
             //rotate right to correct the unbalanced 4-node
-            if(current.Left != null && current.Left.Left != null && current.Left.Red == true && current.Left.Left.Red == true)
+            if (current.Left?.Red == true && current.Left?.Left?.Red == true)
             {
                 RotateRight(current);
             }

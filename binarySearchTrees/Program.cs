@@ -27,12 +27,13 @@ namespace binarySearchTrees
 
 
             /////////RED BLACK TREE EXAMPLES////////
-            rbtre.Add(2);
-            rbtre.Add(4);
-            rbtre.Add(1);
-            rbtre.Add(3);
+            rbtre.Add(20);
+            rbtre.Add(10);
+            rbtre.Add(30);
             rbtre.Add(5);
-
+            rbtre.Add(35);
+            //rbtre.Add(25);
+           // rbtre.Add(27);
 
 
 
