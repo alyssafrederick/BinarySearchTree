@@ -34,7 +34,8 @@ namespace binarySearchTrees
             rbtre.Add(35);            
             rbtre.Add(25);
             rbtre.Add(27);
-
+            rbtre.Remove(30);
+            rbtre.Remove(20);
 
 
             ///////AVL TREE EXAMPLES//////

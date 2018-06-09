@@ -119,7 +119,7 @@ namespace binarySearchTrees
         public RedBlackNode<T> MoveRedRight(RedBlackNode<T> current)
         {
             FlipColor(current);
-            if (isBlack(current.Left.Left) == false)
+            if (isBlack(current?.Left?.Left) == false)
             {
                 current = RotateRight(current);
                 FlipColor(current);
@@ -127,12 +127,18 @@ namespace binarySearchTrees
             return current;
         }
 
-        private RedBlackNode<T> FixUp(RedBlackNode<T> current, T value)
+        private RedBlackNode<T> FixUp(RedBlackNode<T> current)
         {
             //enforce left leaning policy
             if (isBlack(current.Right) == false)
             {
                 current = RotateLeft(current);
+            }
+
+            //balance 4nodes
+            if (isBlack(current.Left) == false && isBlack(current.Left.Left) == false)
+            {
+                current = RotateRight(current);
             }
 
             //split 4nodes
@@ -141,11 +147,20 @@ namespace binarySearchTrees
                 FlipColor(current);
             }
 
-            //balance 4nodes
-
-
             //avoid leaving behind right leaning nodes
-        } 
+            if (isBlack(current?.Left?.Right) == false)
+            {
+                //enforces left leaning policy
+                current = RotateLeft(current);
+                //balance 4nodes
+                if (isBlack(current.Left) == false && isBlack(current.Left.Left) == false)
+                {
+                    current = RotateRight(current);
+                }
+            }
+
+            return current;
+        }
 
         public void Remove(T value)
         {
@@ -163,7 +178,7 @@ namespace binarySearchTrees
             else
             {
                 //searching left
-                if (current.Value.CompareTo(value) < 0)
+                if (current.Value.CompareTo(value) > 0)
                 {
                     if (current.Left != null)
                     {
@@ -191,7 +206,7 @@ namespace binarySearchTrees
                         return null;
                     }
 
-                    if (isBlack(current.Right) == true && isBlack(current.Right.Left) == true)
+                    if (isBlack(current.Right) == true && isBlack(current.Right?.Left) == true)
                     {
                         current = MoveRedRight(current);
                     }
@@ -208,7 +223,7 @@ namespace binarySearchTrees
                         current.Right = remove(current.Right, temp.Value);
                     }
 
-                    else
+                    else if(current?.Right != null)
                     {
                         current.Right = remove(current.Right, value);
                     }
