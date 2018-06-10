@@ -24,10 +24,19 @@ namespace binarySearchTrees
 
             RedBlackTree<int> rbtre = new RedBlackTree<int>();
 
+            Heap<int> heaap = new Heap<int>();
+
+
+
+            /////////HEAP EXAMPLES////////////////
+            heaap.Add(20);
+            heaap.Add(10);
+            
+
 
 
             /////////RED BLACK TREE EXAMPLES////////
-            rbtre.Add(20);
+            /*rbtre.Add(20);
             rbtre.Add(10);
             rbtre.Add(30);
             rbtre.Add(5);
@@ -35,7 +44,7 @@ namespace binarySearchTrees
             rbtre.Add(25);
             rbtre.Add(27);
             rbtre.Remove(30);
-            rbtre.Remove(20);
+            rbtre.Remove(20);*/
 
 
             ///////AVL TREE EXAMPLES//////
