@@ -18,6 +18,25 @@ namespace binarySearchTrees
             Root = new T[30];
         }
 
+
+        /*
+        public T Parent (int index)
+        {
+            get
+            {
+                return Root[(Size - 2) / 2];
+            }
+            set
+            {
+                Root[(Size - 2) / 2] = value;
+            }
+        }*/
+
+        public T Parent(int index)
+        {
+            return Root[(index - 2) / 2];
+        }
+
         public void Add(T value)
         {
             Size++;
@@ -29,12 +48,32 @@ namespace binarySearchTrees
             //adding value to the next available slot
             Root[Size - 1] = value;
 
-            HeapifyUp(value);
+            int valuesIndex = 0;
+            while (Root[valuesIndex].CompareTo(value) != 0)
+            {
+                valuesIndex++;
+            }
+
+            while (Parent(valuesIndex).CompareTo(value) > 0)
+            {
+                HeapifyUp(value);
+            }
         }
 
         public void HeapifyUp(T value)
         {
-            
+            int valuesIndex = 0;
+            while (Root[valuesIndex].CompareTo(value) != 0)
+            {
+                valuesIndex++;
+            }
+
+            if (Parent(valuesIndex).CompareTo(value) > 0)
+            {
+                //switching value and its parent
+                Root[Size - 1] = Parent(valuesIndex);
+                Root[(valuesIndex - 2) / 2] = value;
+            }
         }
 
         private void Resize(int size)

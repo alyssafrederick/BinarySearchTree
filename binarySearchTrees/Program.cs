@@ -28,10 +28,6 @@ namespace binarySearchTrees
 
 
 
-            /////////HEAP EXAMPLES////////////////
-            heaap.Add(20);
-            heaap.Add(10);
-            
 
 
 
@@ -161,10 +157,16 @@ namespace binarySearchTrees
             //alyssaList.Add(7);
             //alyssaList.Add(90);
 
+            /////////HEAP EXAMPLES////////////////
+            heaap.Add(20);
+            heaap.Add(10);
+            heaap.Add(30);
+            heaap.Add(15);
+
+            heaap.Add(7);
 
 
-
-             Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
