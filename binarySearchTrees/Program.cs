@@ -159,12 +159,12 @@ namespace binarySearchTrees
 
             /////////HEAP EXAMPLES////////////////
             heaap.Add(20);
-            heaap.Add(10);
-            heaap.Add(30);
-            heaap.Add(15);
-
-            heaap.Add(7);
-
+            //heaap.Add(10);
+            //heaap.Add(30);
+            //heaap.Add(15);
+            //heaap.Add(7);
+            //heaap.Add(2);
+            heaap.Pop();
 
             Console.ReadLine();
         }

@@ -34,7 +34,7 @@ namespace binarySearchTrees
 
         public T Parent(int index)
         {
-            return Root[(index - 2) / 2];
+            return Root[(index - 1) / 2];
         }
 
         public void Add(T value)
@@ -54,10 +54,20 @@ namespace binarySearchTrees
                 valuesIndex++;
             }
 
-            while (Parent(valuesIndex).CompareTo(value) > 0)
+            if (valuesIndex > 0)
             {
-                HeapifyUp(value);
+                while (Parent(valuesIndex).CompareTo(value) > 0)
+                {
+                    HeapifyUp(value);
+
+                    valuesIndex = 0;
+                    while (Root[valuesIndex].CompareTo(value) != 0)
+                    {
+                        valuesIndex++;
+                    }
+                }
             }
+            
         }
 
         public void HeapifyUp(T value)
@@ -71,11 +81,47 @@ namespace binarySearchTrees
             if (Parent(valuesIndex).CompareTo(value) > 0)
             {
                 //switching value and its parent
-                Root[Size - 1] = Parent(valuesIndex);
-                Root[(valuesIndex - 2) / 2] = value;
+                Root[valuesIndex] = Parent(valuesIndex);
+                Root[(valuesIndex - 1) / 2] = value;
             }
         }
 
+        public T LChild(int index)
+        {
+            return Root[(index * 2) + 1];
+        }
+
+        public T RChild(int index)
+        {
+            return Root[(index * 2) + 2];
+        }
+
+        public void Pop()
+        {
+            if(Size > 1)
+            {
+                HeapifyDown(Size);
+            }
+            Size--;
+        }
+
+        public void HeapifyDown(int size)
+        {
+            int index = 0;
+
+            //lchild's value is greater = rchild's value is less
+            if(LChild(index).CompareTo(RChild(index)) > 0)
+            {
+                //want to swap with the right child
+                
+            }
+            else
+            {
+                //want to swap with the left child
+
+            }
+
+        }
         private void Resize(int size)
         {
             T[] temp = new T[size];
