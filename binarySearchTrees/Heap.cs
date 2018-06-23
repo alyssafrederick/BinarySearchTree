@@ -67,7 +67,7 @@ namespace binarySearchTrees
                     }
                 }
             }
-            
+
         }
 
         public void HeapifyUp(T value)
@@ -98,27 +98,47 @@ namespace binarySearchTrees
 
         public void Pop()
         {
-            if(Size > 1)
+            if (Size > 1)
             {
-                HeapifyDown(Size);
+                int index = 0;
+                HeapifyDown(index);
             }
             Size--;
         }
 
-        public void HeapifyDown(int size)
+        public void HeapifyDown(int index)
         {
-            int index = 0;
-
-            //lchild's value is greater = rchild's value is less
-            if(LChild(index).CompareTo(RChild(index)) > 0)
+            if (((index * 2) + 1) > Size && ((index * 2) + 1) > Size)
             {
-                //want to swap with the right child
-                
+                //there is no children = it is at the bottom of the heap
+                return;
             }
-            else
+            else if (((index * 2) + 2) >= Size)
             {
-                //want to swap with the left child
-
+                //there is no RChild so do not swap with it = swap with LChild
+                T temp = Root[index];
+                Root[index] = LChild(index);
+                Root[(index * 2) + 1] = temp;
+                return;
+            }
+            else if (LChild(index).CompareTo(RChild(index)) > 0)
+            {
+                //LChild's value is greater = RChild's value is less
+                //want to swap with the RChild
+                T temp = Root[index];
+                Root[index] = RChild(index);
+                Root[(index * 2) + 2] = temp;
+                index = (index * 2) + 2;
+                HeapifyDown(index);
+            }
+            else if (LChild(index).CompareTo(RChild(index)) < 0)
+            {
+                //want to swap with the LChild
+                //if it swaps with the LChild, there will then be no LChild and just a RChild
+                Root[index] = LChild(index);
+                Root[(index * 2) + 1] = Root[(index * 2) + 2];
+                index = (index * 2) + 1;
+                HeapifyDown(index);
             }
 
         }
