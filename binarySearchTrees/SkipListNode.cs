@@ -9,7 +9,7 @@ namespace binarySearchTrees
     public class SkipListNode<T> where T : IComparable
     {
         public T Value;
-        public Array[] neighbors;
+        public SkipListNode<T>[] neighbors;
 
         public SkipListNode(T value)
         {
