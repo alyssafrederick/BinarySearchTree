@@ -18,20 +18,6 @@ namespace binarySearchTrees
             Root = new T[30];
         }
 
-
-        /*
-        public T Parent (int index)
-        {
-            get
-            {
-                return Root[(Size - 2) / 2];
-            }
-            set
-            {
-                Root[(Size - 2) / 2] = value;
-            }
-        }*/
-
         public T Parent(int index)
         {
             return Root[(index - 1) / 2];

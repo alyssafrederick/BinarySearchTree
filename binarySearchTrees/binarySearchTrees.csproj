@@ -55,6 +55,8 @@
     <Compile Include="Queue.cs" />
     <Compile Include="RedBlackNode.cs" />
     <Compile Include="RedBlackTree.cs" />
+    <Compile Include="SkipList.cs" />
+    <Compile Include="SkipListNode.cs" />
     <Compile Include="Stack.cs" />
   </ItemGroup>
   <ItemGroup>

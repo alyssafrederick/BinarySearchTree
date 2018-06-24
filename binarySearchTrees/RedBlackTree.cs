@@ -100,7 +100,6 @@ namespace binarySearchTrees
                 current = RotateRight(current);
             }
 
-            // TODO: fix this
             return current;
         }
 
