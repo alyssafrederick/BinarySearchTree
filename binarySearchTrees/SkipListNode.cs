@@ -8,6 +8,7 @@ namespace binarySearchTrees
 {
     public class SkipListNode<T> where T : IComparable
     {
+
         public T Value;
         public SkipListNode<T>[] neighbors;
 
@@ -17,7 +18,6 @@ namespace binarySearchTrees
         }
 
         public int height;
-
 
 
     }
