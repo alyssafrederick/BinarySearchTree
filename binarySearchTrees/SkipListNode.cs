@@ -11,14 +11,13 @@ namespace binarySearchTrees
 
         public T Value;
         public SkipListNode<T>[] neighbors;
+        public int Height => neighbors.Length;
 
-        public SkipListNode(T value)
+        public SkipListNode(T value, int height)
         {
             Value = value;
+            neighbors = new SkipListNode<T>[height];
         }
-
-        public int height;
-
 
     }
 }
