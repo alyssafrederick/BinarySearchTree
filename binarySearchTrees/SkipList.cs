@@ -9,7 +9,7 @@ namespace binarySearchTrees
 {
     public class SkipList<T> : ICollection<T> where T : IComparable
     {
-        Random rand = new Random();
+        Random rand = new Random(7);
         SkipListNode<T> head;
         public int maxHeight => head.Height + 1;
 
@@ -19,9 +19,6 @@ namespace binarySearchTrees
             actualHead.neighbors = new SkipListNode<T>[1];
             head = actualHead;
         }
-
-
-        //SkipListNode<T> startNode = new SkipListNode<T>(default(T));
 
         public int ChooseRandomHeight(int max)
         {
@@ -41,7 +38,6 @@ namespace binarySearchTrees
 
         public void Add(T value)
         {
-
             int theHeight = ChooseRandomHeight(maxHeight);
 
             if (theHeight > head.Height)
@@ -55,37 +51,21 @@ namespace binarySearchTrees
                 head.neighbors = temp;
             }
 
-            SkipListNode<T> toInsert = new SkipListNode<T>(value, theHeight);
 
-            for (int i = 0; i < theHeight; i++)
+            SkipListNode<T> toInsert = new SkipListNode<T>(value, theHeight);
+            for (int level = 0; level < theHeight; level++)
             {
                 SkipListNode<T> temp = head;
-                while (temp.neighbors[i] != null)
+                while (temp.neighbors[level] != null && temp.neighbors[level].Value.CompareTo(value) < 0)
                 {
-                    temp = temp.neighbors[i];
+                    temp = temp.neighbors[level];
                 }
-
-                temp.neighbors[i] = toInsert;
+                if (temp.neighbors[level] != null)
+                {
+                    toInsert.neighbors[level] = temp.neighbors[level];
+                }
+                temp.neighbors[level] = toInsert;
             }
-
-
-            //resize
-            //SkipListNode<T>[] temp = new SkipListNode<T>[ChooseRandomHeight(maxHeight)];
-            //for (int i = 0; i < ChooseRandomHeight(maxHeight); i++)
-            //{
-            //    temp[i] = head.neighbors[i];
-            //}
-            //head.neighbors = temp;
-
-
-
-            // toInsert.height = ChooseRandomHeight(1);
-            //     head.neighbors[0] = toInsert;
-
-
-
-            //toInsert.height = ChooseRandomHeight(1);
-
         }
 
         public void Clear()
@@ -115,7 +95,19 @@ namespace binarySearchTrees
 
         public void Remove(T value)
         {
-
+            int theHeight = head.Height -1;
+            SkipListNode<T> temp = head;
+            for (int level = theHeight; level >= 0; level--)
+            {
+                while (temp.neighbors[level] != null && temp.neighbors[level].Value.CompareTo(value) < 0)
+                {
+                    temp = temp.neighbors[level];
+                }
+                if (temp.neighbors[level] != null && temp.neighbors[level].Value.CompareTo(value) == 0)
+                {
+                    temp.neighbors[level] = temp.neighbors[level].neighbors[level];
+                }
+            }
         }
 
         bool ICollection<T>.Contains(T item)

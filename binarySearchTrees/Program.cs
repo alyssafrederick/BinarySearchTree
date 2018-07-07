@@ -170,6 +170,8 @@ namespace binarySearchTrees
             ///////////SKIP LIST EXAMPLES///////////
             skplst.Add(8);
             skplst.Add(20);
+            skplst.Add(10);
+            skplst.Remove(10);
 
             
 
