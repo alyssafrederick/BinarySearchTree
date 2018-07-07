@@ -73,29 +73,29 @@ namespace binarySearchTrees
             head = null;
         }
 
-        public bool Contains(T value)
+        bool ICollection<T>.Contains(T value)
         {
             throw new NotImplementedException();
         }
 
-        public void CopyTo(T[] list, int index)
+        void ICollection<T>.CopyTo(T[] list, int index)
         {
             throw new NotImplementedException();
         }
         public int Count
         {
-            //throw new NotImplementedException();
             get { return head.Height; }
         }
 
-        public bool IsReadOnly
+        bool ICollection<T>.IsReadOnly
         {
             get { return false; }
         }
 
-        public void Remove(T value)
+        public bool Remove(T value)
         {
-            int theHeight = head.Height -1;
+            bool hasRemoved = false;
+            int theHeight = head.Height - 1;
             SkipListNode<T> temp = head;
             for (int level = theHeight; level >= 0; level--)
             {
@@ -106,18 +106,16 @@ namespace binarySearchTrees
                 if (temp.neighbors[level] != null && temp.neighbors[level].Value.CompareTo(value) == 0)
                 {
                     temp.neighbors[level] = temp.neighbors[level].neighbors[level];
+                    hasRemoved = true;
                 }
             }
-        }
 
-        bool ICollection<T>.Contains(T item)
-        {
-            throw new NotImplementedException();
+            return hasRemoved;
         }
 
         bool ICollection<T>.Remove(T item)
         {
-            throw new NotImplementedException();
+            return Remove(item);
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -127,7 +125,7 @@ namespace binarySearchTrees
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
