@@ -177,9 +177,13 @@ namespace binarySearchTrees
 
 
             ////////////////HASH MAP///////////////////
-            hash.Add(12, 14);
-            hash.Add(13, 15);
-
+            /*hash.Add(1, 11);
+            hash.Add(2, 12);
+            hash.Add(3, 13);
+            hash.Add(4, 14);
+            hash.Add(5, 15);
+            hash.Remove(4);
+            hash.Add(14, 24);*/
 
             Console.ReadLine();
         }

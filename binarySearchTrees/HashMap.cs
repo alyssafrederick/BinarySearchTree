@@ -65,7 +65,10 @@ namespace binarySearchTrees
 
         public void Add(TKey key, TValue value)
         {
-            //make a resize
+            if(itemNumber>= length)
+            {
+                ReHash();
+            }
 
             int hashCode = key.GetHashCode();
             int Index2Insert = hashCode % length;
@@ -95,6 +98,44 @@ namespace binarySearchTrees
             itemNumber++;
         }
 
+        private void ReHash()
+        {
+            int newLength = length * 2;
+
+            System.Collections.Generic.LinkedList<KeyValuePair<TKey, TValue>>[] temp = new System.Collections.Generic.LinkedList<KeyValuePair<TKey, TValue>>[newLength];
+            for (int arrayIndex = 0; arrayIndex < length; arrayIndex++)
+            {
+                foreach (var item in head[arrayIndex])
+                {
+                    int hashCode = item.Key.GetHashCode();
+                    int Index2Insert = hashCode % newLength;
+
+                    KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey, TValue>(item.Key, item.Value);
+
+                    if (temp[Index2Insert] == null)
+                    {
+                        //insert a new linked list into the array
+                        System.Collections.Generic.LinkedList<KeyValuePair<TKey, TValue>> linkedList = new System.Collections.Generic.LinkedList<KeyValuePair<TKey, TValue>>();
+                        temp[Index2Insert] = linkedList;
+                        temp[Index2Insert].AddFirst(pair);
+                    }
+                    else
+                    {
+                        //insert the value into the already there linked list
+                        if (temp[Index2Insert].Contains(pair))
+                        {
+                            throw new Exception("you inserted a duplicate and that is not allowed");
+                        }
+                        else
+                        {
+                            temp[Index2Insert].AddFirst(pair);
+                        }
+                    }
+                }
+            }
+            head = temp;
+        }
+
         public void Clear()
         {
             head = null;
@@ -122,17 +163,41 @@ namespace binarySearchTrees
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            int hashCode = item.Key.GetHashCode();
+            int Index2Insert = hashCode % length;
+
+            return head[Index2Insert].Remove(item);
         }
 
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
+            TValue value;
+            if (TryGetValue(key, out value) == false)
+            {
+                return false;
+            }
+            else
+            {
+                return Remove(new KeyValuePair<TKey, TValue>(key, value));
+            }
         }
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            throw new NotImplementedException();
+            int hashCode = key.GetHashCode();
+            int Index2Insert = hashCode % length;
+
+            foreach (var item in head[Index2Insert])
+            {
+                if (item.Key.GetHashCode() == hashCode)
+                {
+                    value = item.Value;
+                    return true;
+                }
+            }
+
+            value = default(TValue);
+            return false;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
