@@ -21,11 +21,10 @@ C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\obj\D
 C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
 C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.exe
 C:\Users\AlyssaFrederick\Documents\GitHub\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
-C:\Users\AlyssaFrederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.csprojAssemblyReference.cache
-C:\Users\AlyssaFrederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.csproj.CoreCompileInputs.cache
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.exe.config
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.exe
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.pdb
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.exe
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\bin\Debug\binarySearchTrees.pdb
 C:\Users\Alyssa Frederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache
+C:\Users\AlyssaFrederick\Documents\github\DataStructures\binarySearchTrees\obj\Debug\binarySearchTrees.csprojResolveAssemblyReference.cache

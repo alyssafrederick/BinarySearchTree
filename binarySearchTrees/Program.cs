@@ -8,9 +8,6 @@ namespace binarySearchTrees
 {
     class Program
     {
-
-
-
         static void Main(string[] args)
         {
             LinkedList<int> alyssaList = new LinkedList<int>();
@@ -31,6 +28,7 @@ namespace binarySearchTrees
 
             SkipList<int> skplst = new SkipList<int>();
 
+            HashMap<int, int> hash = new HashMap<int, int>();
 
             /////////LINKED LIST EXAMPLES///////
             /*stringList.Add("hi");
@@ -171,10 +169,16 @@ namespace binarySearchTrees
 
 
             ///////////SKIP LIST EXAMPLES///////////
-            skplst.Add(8);
+            /*skplst.Add(8);
             skplst.Add(20);
             skplst.Add(10);
-            skplst.Remove(10);
+            skplst.Remove(10);*/
+
+
+
+            ////////////////HASH MAP///////////////////
+            hash.Add(12, 14);
+            hash.Add(13, 15);
 
 
             Console.ReadLine();
