@@ -128,6 +128,7 @@ namespace binarySearchTrees
             }
 
         }
+
         private void Resize(int size)
         {
             T[] temp = new T[size];
