@@ -47,6 +47,7 @@
     <Compile Include="AVLtree.cs" />
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="BSTNode.cs" />
+    <Compile Include="HashMap.cs" />
     <Compile Include="Heap.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Node.cs" />
@@ -55,6 +56,8 @@
     <Compile Include="Queue.cs" />
     <Compile Include="RedBlackNode.cs" />
     <Compile Include="RedBlackTree.cs" />
+    <Compile Include="SkipList.cs" />
+    <Compile Include="SkipListNode.cs" />
     <Compile Include="Stack.cs" />
   </ItemGroup>
   <ItemGroup>
