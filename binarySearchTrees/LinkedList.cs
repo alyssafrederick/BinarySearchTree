@@ -2,7 +2,7 @@
 
 namespace binarySearchTrees
 {
-    class LinkedList<T> where T : IComparable
+    public class LinkedList<T> where T : IComparable
     {
         Node<T> head;
         public int Size;

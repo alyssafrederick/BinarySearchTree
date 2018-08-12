@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace binarySearchTrees
 {
-    class Stack<T> where T : IComparable
+    public class Stack<T> where T : IComparable
     {
         LinkedList<T> linkedList;
         
